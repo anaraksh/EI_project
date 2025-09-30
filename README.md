@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<h1 style="font-size:36px;">Project Documentation</h1>
+
 
 <h1 style="font-size:32px; color:#1E90FF;">EXERCISE 1</h1>
 
