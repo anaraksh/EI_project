@@ -1,192 +1,185 @@
 EXERCISE 1
-
 BEHAVIOURAL DESIGN PATTERN
-1.Task Scheduling System – Observer Pattern
-Use Case
+1. Task Scheduling System – Observer Pattern
 
+Use Case
 This console-based application allows users to add tasks and get notified whenever the schedule is updated. It ensures that multiple observers (like console notifiers) are always in sync with the task list.
 
 Design Pattern
-
-The application uses the Observer Design Pattern. This pattern establishes a one-to-many dependency between a subject and its observers. Whenever the subject’s state changes, all registered observers are updated automatically.
+The application uses the Observer Design Pattern, establishing a one-to-many dependency between a subject and its observers. Whenever the subject’s state changes, all registered observers are updated automatically.
 
 Relation to the Use Case
 
-Subject: ScheduleManager class which maintains tasks and notifies observers.
+Subject: ScheduleManager (maintains tasks and notifies observers)
 
-Observers: Classes implementing the Observer interface, such as ConsoleNotifier, which get notified of task updates.
+Observers: Classes implementing Observer, such as ConsoleNotifier
 
 Classes
 
-ScheduleManager: Manages task list, observers, and notifications.
+ScheduleManager: Manages task list, observers, and notifications
 
-Task: Represents an individual task with attributes like description, priority, start/end time, and completion status.
+Task: Represents an individual task with attributes like description, priority, start/end time, and completion status
 
-Observer: Interface for observer classes.
+Observer: Interface for observer classes
 
-ConsoleNotifier: Prints updates to the console when tasks are added or modified.
+ConsoleNotifier: Prints updates to the console
 
-Main: Entry point of the program to run the scheduler.
+Main: Entry point for running the scheduler
 
-2.Task Command Execution – Command Pattern
+2. Task Command Execution – Command Pattern
+
 Use Case
-
-The system allows encapsulating operations such as adding tasks into command objects. Commands can be executed, queued, or undone if needed.
+Encapsulates operations such as adding tasks into command objects. Commands can be executed, queued, or undone.
 
 Design Pattern
-
-The Command Pattern is used. It encapsulates requests as objects, allowing them to be parameterized and executed flexibly.
+The Command Pattern is used, allowing requests to be treated as objects and executed flexibly.
 
 Relation to the Use Case
 
-Command Interface → Defines the execute() method.
+Command Interface → defines execute()
 
-Concrete Commands → AddTaskCommand encapsulates adding a task.
+Concrete Commands → AddTaskCommand
 
-Invoker → Executes commands on demand.
+Invoker → executes commands
 
 Classes
 
-Command: Interface for all command objects.
+Command: Interface for commands
 
-AddTaskCommand: Concrete command for adding a task.
+AddTaskCommand: Concrete command to add a task
 
-Invoker: Executes commands given by the user.
+Invoker: Executes commands
 
-Task: Domain object for scheduling.
+Task: Represents the domain object
 
 CREATIONAL DESIGN PATTERNS
-1.Schedule Manager – Singleton Pattern
-Use Case
+1. Schedule Manager – Singleton Pattern
 
-The system ensures there is only one instance of the task scheduler throughout the program.
+Use Case
+Ensures only one instance of the task scheduler exists.
 
 Design Pattern
-
-The Singleton Pattern ensures a single global point of access to the ScheduleManager.
-
-Relation to Use Case
-
-Only one ScheduleManager instance is created and reused across the application.
+Singleton Pattern provides a single global point of access to the ScheduleManager.
 
 Classes
 
-ScheduleManager: Implements Singleton to prevent multiple instances.
+ScheduleManager: Singleton managing tasks
 
-2.Task Creation – Factory Pattern
+2. Task Creation – Factory Pattern
+
 Use Case
-
-The system allows creating tasks of different priority levels through a centralized factory, abstracting object creation from the client.
+Creates tasks of different priorities via a centralized factory.
 
 Design Pattern
-
-The Factory Pattern creates Task objects without exposing the instantiation logic.
+Factory Pattern abstracts object creation from the client.
 
 Classes
 
-TaskFactory: Responsible for creating Task objects.
+TaskFactory: Creates tasks
 
-Task: Domain object created by the factory.
+Task: Domain object
 
-Priority: Enum representing task priority.
+Priority: Enum for task priority
 
 STRUCTURAL DESIGN PATTERNS
-1.Task Storage – Adapter Pattern
-Use Case
+1. Task Storage – Adapter Pattern
 
-The system allows tasks to be stored either in memory or in a JSON file by adapting the storage interface.
+Use Case
+Tasks can be stored in memory or JSON files via a common interface.
 
 Design Pattern
-
-The Adapter Pattern is used to bridge between different storage implementations.
+Adapter Pattern bridges different storage implementations.
 
 Classes
 
-TaskStorage: Interface for storage operations.
+TaskStorage: Storage interface
 
-InMemoryStorage: Stores tasks in memory.
+InMemoryStorage: Stores tasks in memory
 
-JsonFileStorageAdapter: Adapts file-based storage to match TaskStorage interface.
+JsonFileStorageAdapter: Adapts file storage to TaskStorage
 
-2.Storage Logging – Decorator Pattern
+2. Storage Logging – Decorator Pattern
+
 Use Case
-
-The system logs all storage operations (saving, updating tasks) without modifying the core storage logic.
+Logs storage operations without changing core storage logic.
 
 Design Pattern
-
-The Decorator Pattern is used to extend functionality of storage classes dynamically.
+Decorator Pattern extends storage functionality dynamically.
 
 Classes
 
-LoggingStorageDecorator: Wraps around TaskStorage to add logging.
+LoggingStorageDecorator: Adds logging to TaskStorage
 
-TaskStorage: Interface implemented by storage classes.
+TaskStorage: Interface implemented by storage classes
 
 EXERCISE 2
-
 Astronaut Daily Schedule Organizer – Singleton, Factory, Observer Patterns
-Use Case Overview
 
-This console-based application helps astronauts organize their daily schedules. Users can add, remove, and view tasks. Each task includes a description, start time, end time, and priority level. The system ensures no overlapping tasks and notifies observers on conflicts.
+Use Case Overview
+This console application helps astronauts organize their daily schedules. Users can add, remove, and view tasks. Tasks include description, start/end time, and priority. The system ensures no overlapping tasks and notifies observers of conflicts.
 
 Functionalities
 
-Task Management: Add, remove, and edit tasks.
+Task Management: Add, remove, edit tasks
 
-Task Scheduling: View tasks sorted by start time.
+Task Scheduling: View tasks sorted by start time
 
-Notifications: Notify users of conflicts using the Observer pattern.
+Notifications: Alert users of conflicts via Observer pattern
 
-Task Completion: Mark tasks as completed.
+Task Completion: Mark tasks as completed
 
-Priority Filtering: View tasks by specific priority levels.
+Priority Filtering: View tasks by priority level
 
-Design Patterns Used
 1. Singleton Pattern
 
-Purpose: Ensures only one instance of ScheduleManager exists.
+Purpose
+Ensures only one instance of ScheduleManager.
 
-Relation to Use Case: Centralized management of all tasks.
+Relation to Use Case
+Centralized task management.
 
-Classes Involved:
+Classes Involved
 
-ScheduleManager: Singleton class managing all tasks and observers.
+ScheduleManager: Singleton managing all tasks and observers
 
 2. Factory Pattern
 
-Purpose: Creates Task objects dynamically without exposing instantiation logic.
+Purpose
+Creates Task objects without exposing instantiation logic.
 
-Relation to Use Case: Allows creating tasks with different priorities efficiently.
+Relation to Use Case
+Efficiently creates tasks of different priorities.
 
-Classes Involved:
+Classes Involved
 
-TaskFactory: Factory class creating Task objects.
+TaskFactory: Creates Task objects
 
-Task: Domain object representing a scheduled task.
+Task: Represents a scheduled task
 
 3. Observer Pattern
 
-Purpose: Notifies users of task conflicts or updates.
+Purpose
+Notifies users of task conflicts or updates.
 
-Relation to Use Case: Alerts users if a new task overlaps or is modified.
+Relation to Use Case
+Alerts users if a task overlaps or is modified.
 
-Classes Involved:
+Classes Involved
 
-Observer: Interface for observers.
+Observer: Interface for observers
 
-ConsoleObserver: Prints notifications about task conflicts and updates.
+ConsoleObserver: Prints notifications for conflicts/updates
 
 Classes and Responsibilities
 
-ScheduleManager.java: Singleton managing tasks and notifying observers.
+ScheduleManager.java: Singleton managing tasks and observers
 
-Task.java: Represents a task with description, start/end time, priority, and completion status.
+Task.java: Represents a task with description, start/end time, priority, completion status
 
-TaskFactory.java: Factory for creating tasks.
+TaskFactory.java: Factory creating tasks
 
-Observer.java: Interface for observers.
+Observer.java: Observer interface
 
-ConsoleObserver.java: Observer implementation for console notifications.
+ConsoleObserver.java: Observer implementation for console notifications
 
-Main.java / ConsoleApp.java: Entry point for user interaction.
+Main.java / ConsoleApp.java: Entry point for user interaction
